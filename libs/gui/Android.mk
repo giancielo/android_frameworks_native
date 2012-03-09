@@ -60,6 +60,10 @@ ifneq ($(TARGET_QCOM_DISPLAY_VARIANT),legacy)
 endif
 endif
 
+ifeq ($(BOARD_ADRENO_DECIDE_TEXTURE_TARGET),true)
+    LOCAL_CFLAGS += -DDECIDE_TEXTURE_TARGET
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 ifeq (,$(ONE_SHOT_MAKEFILE))

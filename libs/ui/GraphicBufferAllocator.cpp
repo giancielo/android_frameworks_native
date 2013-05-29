@@ -211,6 +211,13 @@ status_t GraphicBufferAllocator::alloc(uint32_t w, uint32_t h,
 
     // we have a h/w allocator and h/w buffer is requested
 
+    status_t err;
+
+    // If too many async frees are queued up then wait for some of them to
+    // complete before attempting to allocate more memory.  This is exercised
+    // by the android.opengl.cts.GLSurfaceViewTest CTS test.
+    BufferLiberatorThread::maybeWaitForLiberation();
+
 #ifdef EXYNOS4_ENHANCEMENTS
     if ((format == 0x101) || (format == 0x105) || (format == 0x107)) {
         // 0x101 = HAL_PIXEL_FORMAT_YCbCr_420_P (Samsung-specific pixel format)

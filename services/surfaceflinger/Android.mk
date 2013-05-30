@@ -51,7 +51,7 @@ ifeq ($(BOARD_ADRENO_DECIDE_TEXTURE_TARGET),true)
 endif
 
 # HWComposer.cpp contains 2 pretty bad aliasing violations
-LOCAL_CFLAGS += -Wno-error=strict-aliasing -fno-strict-aliasing
+LOCAL_CFLAGS += -Wno-error=strict-aliasing
 
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \
